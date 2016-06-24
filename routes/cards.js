@@ -12,4 +12,18 @@ router.get('/', function(req, res) {
 	});
 });
 
+router.post('/', function(req, res) {
+	var collection = db.get('blueCards');
+	collection.insert({
+		cardName: req.body.cardName,
+		health: req.body.health,
+		attack: req.body.attack,
+		description: req.body.description
+	}, function(err, blueCards) {
+		if (err) throw err;
+
+		res.json(blueCards);
+	});
+});
+
 module.exports = router;
