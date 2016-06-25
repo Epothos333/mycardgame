@@ -21,7 +21,7 @@ gulp.task('nodemon', function(){
 // });	
 
 gulp.task('watch', function () {
-    gulp.watch('./styles/*.styl', ['stylus']); 
+    gulp.watch('./public/stylesheets/*.styl', ['stylus']); 
 });
 
   gulp.task('default', ['nodemon', 'stylus', 'watch']);

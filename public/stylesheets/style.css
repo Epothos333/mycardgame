@@ -5,9 +5,16 @@ a {
   color: #00b7ff;
 }
 img {
-  width: 100px;
-  height: 100px;
+  width: 80%;
 }
 .borderMe {
   border: 2px solid #000;
+}
+.card-class {
+  height: 300px;
+  display: inline-block;
+  margin: 20px 20px;
+}
+.card-class img {
+  margin: 0 20px;
 }
