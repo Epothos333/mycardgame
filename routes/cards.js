@@ -26,4 +26,30 @@ router.post('/', function(req, res) {
 	});
 });
 
+router.get('/:id', function(req, res) {
+	var collection = db.get('blueCards');
+	collection.findOne({ _id: req.params.id}, function(err, blueCards) {
+		if (err) throw err;
+
+		res.json(blueCards);
+	});
+});
+
+router.put('/:id', function(req, res) {
+	var collection = db.get('blueCards');
+	collection.update({
+		_id: req.params.id
+	},
+	{
+		cardName: req.body.cardName,
+		health: req.body.health,
+		attack: req.body.attack,
+		description: req.body.description
+	}, function(err, blueCards) {
+		if (err) throw err;
+
+		res.json(blueCards);
+	});
+})
+
 module.exports = router;

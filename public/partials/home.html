@@ -6,12 +6,16 @@
 <div class='row'>
 
 	<div ng-repeat='card in bluecards' class='borderMe card-class col-xs-3'>
-		<h4>Name: {{card.cardName}}</h4>
+		<a href="/#/blueCardCollection/{{card._id}}">
+			{{card.cardName}}
+		</a>
+
+<!-- 		<h4>Name: {{card.cardName}}</h4>
 		<img src="http://vignette2.wikia.nocookie.net/yugioh/images/7/79/DarkMagician-TF05-JP-VG-3.png/revision/latest?cb=20120121004630">
 
 		<h6> Attack: {{card.attack}}</h6>
 		<h6> Health: {{card.health}}</h6>
-		<h6> Description: {{card.description}}</h6>
+		<h6> Description: {{card.description}}</h6> -->
 
 	</div>
 
