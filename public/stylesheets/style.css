@@ -5,7 +5,7 @@ a {
   color: #00b7ff;
 }
 img {
-  width: 80%;
+  width: 60%;
 }
 .borderMe {
   border: 2px solid #000;
@@ -17,4 +17,8 @@ img {
 }
 .card-class img {
   margin: 0 20px;
+}
+.blue-card-design {
+  border-radius: 4px;
+  background-color: #add8e6;
 }

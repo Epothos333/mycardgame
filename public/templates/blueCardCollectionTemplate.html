@@ -1,0 +1,13 @@
+<div class='row'>
+
+	<div ng-repeat='card in bluecards' class='card-class col-xs-3'>
+		<blue-card></blue-card>
+		<a href="/#/cardCollection/blueCards/{{card._id}}">
+			Edit
+		</a>
+		<a href="/#/cardCollection/blueCards/delete/{{card._id}}">
+			Delete
+		</a>
+	</div>
+
+</div>

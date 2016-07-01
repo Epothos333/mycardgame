@@ -4,7 +4,7 @@ var router = express.Router();
 var monk = require('monk');
 var db = monk('localhost:27017/Cards');
 
-router.get('/', function(req, res) {
+router.get('/blueCards', function(req, res) {
 	var collection = db.get('blueCards');
 	collection.find({}, function(err, blueCards) {
 		if (err) throw err;
@@ -12,7 +12,15 @@ router.get('/', function(req, res) {
 	});
 });
 
-router.post('/', function(req, res) {
+router.get('/greenCards', function(req, res) {
+	var collection = db.get('greenCards');
+	collection.find({}, function(err, greenCards) {
+		if(err) throw err;
+		res.json(greenCards);
+	});
+});
+
+router.post('/blueCards', function(req, res) {
 	var collection = db.get('blueCards');
 	collection.insert({
 		cardName: req.body.cardName,
@@ -26,7 +34,19 @@ router.post('/', function(req, res) {
 	});
 });
 
-router.get('/:id', function(req, res) {
+router.post('/greenCards', function(req, res) {
+	var collection = db.get('greenCards');
+	collection.insert({
+		cardName: req.body.cardName,
+		cardEffect: req.body.cardEffect
+	}, function(err, greenCards) {
+		if (err) throw err;
+
+		res.json(greenCards);
+	});
+});
+
+router.get('/blueCards/:id', function(req, res) {
 	var collection = db.get('blueCards');
 	collection.findOne({ _id: req.params.id}, function(err, blueCards) {
 		if (err) throw err;
@@ -35,7 +55,7 @@ router.get('/:id', function(req, res) {
 	});
 });
 
-router.put('/:id', function(req, res) {
+router.put('/blueCards/:id', function(req, res) {
 	var collection = db.get('blueCards');
 	collection.update({
 		_id: req.params.id
@@ -50,6 +70,15 @@ router.put('/:id', function(req, res) {
 
 		res.json(blueCards);
 	});
+})
+
+router.delete('/blueCards/:id', function(req, res) {
+	var collection = db.get('blueCards');
+	collection.remove({ _id: req.params.id}, function(err, blueCards) {
+		if (err) throw err;
+
+		res.json(blueCards);
+	})
 })
 
 module.exports = router;

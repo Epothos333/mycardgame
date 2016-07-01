@@ -14,13 +14,21 @@ app.config(['$routeProvider', function($routeProvider){
             templateUrl: 'partials/blue-card-form.html',
             controller: 'getBlueCardController'
         })
+        .when('/blueCardCollection/delete/:id', {
+            templateUrl: 'partials/delete-card.html',
+            controller: 'deleteBlueCardController'
+        })
+        .when('/add-green-cards', {
+            templateUrl: 'partials/green-card-form.html',
+            controller: 'addGreenCardController'
+        })
         .otherwise({
             redirectTo: '/'
         });
 }]);
 
 app.controller('blueCardController', ['$scope', '$resource', function($scope, $resource) {
-	var Cards = $resource('/api/blueCardCollection');
+	var Cards = $resource('/api/cardCollection/blueCards');
 	Cards.query(function(bluecards) {
 		$scope.bluecards = bluecards;
 	});
@@ -32,7 +40,7 @@ app.controller('getBlueCardController', ['$scope', '$location', '$resource', '$r
         $location.path(view);
     }
 
-    var Cards = $resource('/api/blueCardCollection/:id', { id: '@_id' }, {
+    var Cards = $resource('/api/cardCollection/blueCards/:id', { id: '@_id' }, {
         update: { method: 'PUT' }
     });
 
@@ -53,7 +61,7 @@ app.controller('addBlueCardController', ['$scope', '$location', '$resource', fun
     }
 
     $scope.save = function() {
-        var Cards = $resource('api/blueCardCollection');
+        var Cards = $resource('api/cardCollection/blueCards');
 
         Cards.save($scope.newCard, function() {
         $location.path('/');
@@ -61,3 +69,28 @@ app.controller('addBlueCardController', ['$scope', '$location', '$resource', fun
     }
 
 }]);
+
+app.controller('deleteBlueCardController', ['$scope', '$location', '$resource', '$routeParams', function($scope, $location, $resource, $routeParams) {
+
+    var Cards = $resource('api/cardCollection/blueCards/:id');
+
+    Cards.get({ id: $routeParams.id}, function(card) {
+        $scope.cardToDelete = card
+    })
+
+    $scope.delete = function() {
+        Cards.delete({ id: $routeParams.id}, function(card) {
+            $location.path('/');
+        })
+    }
+
+}]);
+
+
+
+
+
+
+
+
+
