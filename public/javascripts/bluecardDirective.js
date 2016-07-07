@@ -1,5 +1,3 @@
-var app = angular.module('Cards');
-
 app.directive('blueCard', function() {
 	return {
 		restrict: 'E',

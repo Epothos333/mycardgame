@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var stylus = require('gulp-stylus');
-// var concat = require('gulp-concat');
+var concat = require('gulp-concat');
 var watch = require('gulp-watch');
 var nodemon = require('gulp-nodemon');
 var jshint = require('gulp-jshint');
@@ -21,16 +21,15 @@ gulp.task('nodemon', function(){
 //     .pipe(jshint.reporter('You made a mistake'));
 // });
 
-// gulp.task('javascripts', function(){
-// 	return gulp.src('./public/javascripts/*.js')
-// 		.pipe(concat('all.js'))
-// 		.pipe(gulp.dest('./'))
-// });	
-
-gulp.task('watch', function () {
-    gulp.watch('./public/stylesheets/*.styl', ['stylus']); 
+gulp.task('javascripts', function(){
+	return gulp.src('./public/javascripts/*.js')
+		.pipe(concat('./public/javascripts/masterJS.js'))
+		.pipe(gulp.dest('./'))
 });
 
-  gulp.task('default', ['nodemon', 'stylus', /*'lint', */ 'watch']);
+gulp.task('watch', function () {
+    gulp.watch('./public/stylesheets/*.styl', ['stylus']);
+    gulp.watch('./public/javascripts/*.js', ['javascripts']);
+});
 
-
+  gulp.task('default', ['nodemon', 'stylus', 'javascripts', /*'lint', */ 'watch']);

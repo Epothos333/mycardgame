@@ -1,5 +1,3 @@
-var app = angular.module('Cards');
-
 app.controller('addGreenCardController', ['$scope', '$location', '$resource', function($scope, $location, $resource){
 
     $scope.changeView = function(view) {
