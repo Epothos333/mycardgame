@@ -1,20 +1,3 @@
-var app = angular.module('Cards');
-
-app.directive('blueCard', function() {
-	return {
-		restrict: 'E',
-		replace: true,
-		templateUrl: '../templates/blueCardTemplate.html'
-	}
-});
-
-app.directive('cardCollection', function() {
-	return {
-		restrict: 'E',
-		replace: true,
-		templateUrl: '../templates/blueCardCollectionTemplate.html'
-	}
-});
 var app = angular.module('Cards', ['ngResource', 'ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
@@ -43,6 +26,22 @@ app.config(['$routeProvider', function($routeProvider){
             redirectTo: '/'
         });
 }]);
+
+app.directive('blueCard', function() {
+	return {
+		restrict: 'E',
+		replace: true,
+		templateUrl: '../templates/blueCardTemplate.html'
+	}
+});
+
+app.directive('cardCollection', function() {
+	return {
+		restrict: 'E',
+		replace: true,
+		templateUrl: '../templates/blueCardCollectionTemplate.html'
+	}
+});
 
 app.controller('blueCardController', ['$scope', '$resource', function($scope, $resource) {
 	var Cards = $resource('/api/cardCollection/blueCards');
@@ -102,8 +101,6 @@ app.controller('deleteBlueCardController', ['$scope', '$location', '$resource', 
     }
 
 }]);
-
-var app = angular.module('Cards');
 
 app.controller('addGreenCardController', ['$scope', '$location', '$resource', function($scope, $location, $resource){
 

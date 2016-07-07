@@ -23,8 +23,8 @@ gulp.task('nodemon', function(){
 
 gulp.task('javascripts', function(){
 	return gulp.src('./public/javascripts/*.js')
-		.pipe(concat('./public/javascripts/masterJS.js'))
-		.pipe(gulp.dest('./'))
+		.pipe(concat('masterJS.js'))
+		.pipe(gulp.dest('public/javascripts/master/'))
 });
 
 gulp.task('watch', function () {
