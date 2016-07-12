@@ -3,7 +3,15 @@ var stylus = require('gulp-stylus');
 var concat = require('gulp-concat');
 var watch = require('gulp-watch');
 var nodemon = require('gulp-nodemon');
-var jshint = require('gulp-jshint');
+// var jshint = require('gulp-jshint');
+var Server = require('karma').Server;
+
+gulp.task('test', function(done) {
+	new Server({
+		configFile:  __dirname + '/karma.conf.js',
+    singleRun: true
+	}, done).start();
+})
 
 gulp.task('stylus', function(){
 	return gulp.src('./public/stylesheets/style.styl')
